@@ -87,7 +87,7 @@ Tab1:AddToggle({
         group = Value
         if group then
             spawn(function ()
-                while group and task.wait() do
+                while group and task.wait(60) do
                     local args = {
                         [1] = {
                             [1] = "GroupRewards"
@@ -101,6 +101,49 @@ Tab1:AddToggle({
         end
     end
 })
+
+-- Tab1:AddDropdown({
+--     Name = "Energy Relic",
+--     Default = grind_relic,
+--     Options = {"white_mustache", "dark_orbs", "god_ears", "aot_cape", "gon_accessories", "meliodas_accessories", "rimuru_wings", "pochita"},
+--     Callback = function(Value)
+--         grind_relic = Value
+--     end
+-- })
+
+-- Tab1:AddDropdown({
+--     Name = "Time Trial Relic",
+--     Default = time_trial_relic,
+--     Options = {"white_mustache", "dark_orbs", "god_ears", "aot_cape", "gon_accessories", "meliodas_accessories", "rimuru_wings", "pochita"},
+--     Callback = function(Value)
+--         time_trial_relic = Value
+--     end
+-- })
+
+-- Tab1:AddToggle({
+--     Name = "Swap Accessories",
+--     Default = false,
+--     Save = false,
+--     Flag = "Relicswap",
+--     Callback = function(Value)
+--         Accessory = Value
+--         if Accessory then
+--             spawn(function()
+--                 while Accessory and task.wait() do
+--                     local Energy = game:GetService("ReplicatedStorage").Remotes.Server:FireServer({"EquipAccessory", grind_relic})
+--                     local TimeTrial = game:GetService("ReplicatedStorage").Remotes.Server:FireServer({"EquipAccessory", time_trial_relic})
+--                     if game:GetService("Workspace")["_TRIAL"].Easy.Enemies:GetChildren(1) then
+--                         game:GetService("ReplicatedStorage").Remotes.Server:FireServer({"EquipAccessory", time_trial_relic}) print("TT") break
+--                     else
+--                         print("Grind")
+--                         game:GetService("ReplicatedStorage").Remotes.Server:FireServer({"EquipAccessory", grind_relic}) break
+                                                                               
+--                     end
+--                 end
+--             end)
+--         end
+--     end
+-- })
 
 local Tab2 = Window:MakeTab({
 	Name = "Exchange",
@@ -139,7 +182,7 @@ Tab2:AddToggle({
         Exchange = Value
         if Exchange then
             spawn(function ()
-                while Exchange and task.wait() do
+                while Exchange and task.wait(30) do
                     local args = {
                         [1] = {
                             [1] = "Exchange",
@@ -149,6 +192,15 @@ Tab2:AddToggle({
                     }
                     
                     game:GetService("ReplicatedStorage").Remotes.Server:FireServer(unpack(args))
+                    local args = {
+                        [1] = {
+                            [1] = "Exchange",
+                            [2] = "reset"
+                        }
+                    }
+
+                    game:GetService("ReplicatedStorage").Remotes.Server:FireServer(unpack(args))
+
                     
                 end
                 
